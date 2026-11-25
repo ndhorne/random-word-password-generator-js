@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="description"
+    content="A utility for generating mnemonic random word passwords"
+  >
+  <meta name="author" content="Nicholas Horne">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Random Word Password Generator</title>
+  
+  <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="./styles/modalstyles.css">
+  <link rel="stylesheet" type="text/css" href="./styles/mediaquerystyles.css">
+</head>
+
+<body>
+  <h1>Random Word Password Generator</h1>
+  
+  <div id="main">
+    <form>
+      <fieldset id="options-fieldset">
+        <legend id="options-legend">Options</legend>
+        
+        <ul id="numeric-arguments-list">
+          <li>
+            <label
+              for="words-input"
+              id="words-input-label"
+              title="Number of words in password(s)"
+            >Number of words per password:</label>
+            <input type="number" id="words-input" value="3" min="1" required>
+          </li>
+          
+          <li>
+            <label
+              for="quantity-input"
+              id="quantity-input-label"
+              title="Number of passwords to generate"
+            >Number of passwords:</label>
+            <input type="number" id="quantity-input" value="1" min="1" required>
+          </li>
+        </ul> <!-- numeric-arguments-list -->
+        
+        <fieldset id="casing-fieldset">
+          <legend id="casing-legend">Casing</legend>
+          
+          <ul id="casing-list">
+            <li>
+              <input
+                type="radio"
+                id="casing-radio-button-camel"
+                class="casing-radio-button"
+                name="casing"
+                value="camel"
+                required
+                checked
+              >
+              <label
+                for="casing-radio-button-camel"
+                id="casing-radio-button-camel-label"
+                title="fooBar"
+              >Camel</label>
+            </li>
+            
+            <li>
+              <input
+                type="radio"
+                id="casing-radio-button-pascal"
+                class="casing-radio-button"
+                name="casing"
+                value="pascal"
+                required
+              >
+              <label
+                for="casing-radio-button-pascal"
+                id="casing-radio-button-pascal-label"
+                title="FooBar"
+              >Pascal</label>
+            </li>
+            
+            <li>
+              <input
+                type="radio"
+                id="casing-radio-button-kebab"
+                class="casing-radio-button"
+                name="casing"
+                value="kebab"
+                required
+              >
+              <label
+                for="casing-radio-button-kebab"
+                id="casing-radio-button-kebab-label"
+                title="foo-bar"
+              >Kebab</label>
+            </li>
+            
+            <li>
+              <input
+                type="radio"
+                id="casing-radio-button-snake"
+                class="casing-radio-button"
+                name="casing"
+                value="snake"
+                required
+              >
+              <label
+                for="casing-radio-button-snake"
+                id="casing-radio-button-snake-label"
+                title="foo_bar"
+              >Snake</label>
+            </li>
+            
+            <li>
+              <input
+                type="radio"
+                id="casing-radio-button-flat"
+                class="casing-radio-button"
+                name="casing"
+                value="flat"
+                required
+              >
+              <label
+                for="casing-radio-button-flat"
+                id="casing-radio-button-flat-label"
+                title="foobar"
+              >Flat</label>
+            </li>
+          </ul> <!-- casing-list -->
+        </fieldset> <!-- casing-fieldset -->
+        
+        <fieldset id="word-bank-fieldset">
+          <legend id="word-bank-legend">Word Banks</legend>
+          
+          <ul id="word-bank-list">
+            <li id="word-bank-list-item-common">
+              <input
+                id="word-bank-checkbox-common"
+                class="word-bank-checkbox"
+                type="checkbox"
+                checked
+              >
+              <label
+                for="word-bank-checkbox-common"
+                id="word-bank-checkbox-common-label"
+                title="Common English words"
+              >Common</label>
+            </li>
+            
+            <li id="word-bank-list-item-extensive">
+              <input
+                id="word-bank-checkbox-extensive"
+                class="word-bank-checkbox"
+                type="checkbox"
+              >
+              <label
+                for="word-bank-checkbox-extensive"
+                id="word-bank-checkbox-extensive-label"
+                title="Extensive English words (may contain expletives)"
+              >Extensive</label>
+            </li>
+            
+            <li id="word-bank-list-item-wordle">
+              <input
+                id="word-bank-checkbox-wordle"
+                class="word-bank-checkbox"
+                type="checkbox"
+              >
+              <label
+                for="word-bank-checkbox-wordle"
+                id="word-bank-checkbox-wordle-label"
+                title="Words from the Wordle dictionary"
+              >Wordle</label>
+            </li>
+            
+            <li id="word-bank-list-item-lovecraft">
+              <input
+                id="word-bank-checkbox-lovecraft"
+                class="word-bank-checkbox"
+                type="checkbox"
+              >
+              <label
+                for="word-bank-checkbox-lovecraft"
+                id="word-bank-checkbox-lovecraft-label"
+                title="Prominent words from the works of H. P. Lovecraft"
+              >Lovecraft</label>
+            </li>
+            
+            <li id="word-bank-list-item-shakespeare">
+              <input
+                id="word-bank-checkbox-shakespeare"
+                class="word-bank-checkbox"
+                type="checkbox"
+              >
+              <label
+                for="word-bank-checkbox-shakespeare"
+                id="word-bank-checkbox-shakespeare-label"
+                title="Prominent words from the works of William Shakespeare"
+              >Shakespeare</label>
+            </li>
+          </ul> <!-- word-bank-list -->
+        </fieldset> <!-- word-bank-fieldset -->
+        
+        <details id="advanced-options-details">
+          <summary id="advanced-options-summary">Advanced Options</summary>
+          <ul id="capitalize-password-options" class="password-options-list">
+            <li>
+              <input type="checkbox" id="capitalize-passwords">
+              <label
+                for="capitalize-passwords"
+                id="capitalize-passwords-label"
+                title="Capitalize passwords"
+              >Capitalize passwords</label>
+            </li>
+            <li>
+              <input type="checkbox" id="capitalize-each-word">
+              <label
+                for="capitalize-each-word"
+                id="capitalize-each-word-label"
+                title="Capitalize each word in passwords"
+              >Capitalize each word</label>
+            </li>
+          </ul>
+          
+          <ul id="append-numbers-options" class="password-options-list">
+            <li>
+              <input type="checkbox" id="append-numbers-to-passwords">
+              <label
+                for="append-numbers-to-passwords"
+                id="append-numbers-to-passwords-label"
+                title="Append numbers to passwords"
+              >Append <input type="number" id="append-numbers-to-passwords-quantity" class="quantity-input" value="1" min="1" required> number(s) to passwords</label>
+            </li>
+            <li>
+              <input type="checkbox" id="append-numbers-to-each-word">
+              <label
+                for="append-numbers-to-each-word"
+                id="append-numbers-to-each-word-label"
+                title="Append numbers to each word in passwords"
+              >Append <input type="number" id="append-numbers-to-each-word-quantity" class="quantity-input" value="1" min="1" required> number(s) to each word</label>
+            </li>
+            <li>
+              <input type="checkbox" id="append-x-numbers-to-y-words">
+              <label
+                for="append-x-numbers-to-y-words"
+                id="append-x-numbers-to-y-words-label"
+                title="Append X numbers to Y randomly chosen words"
+              >Append <input type="number" id="append-x-numbers-to-y-words-number-quantity" class="quantity-input" value="1" min="1" required> number(s) to <input type="number" id="append-x-numbers-to-y-words-word-quantity" class="quantity-input" value="1" min="1" required> word(s)</label>
+            </li>
+          </ul>
+          
+          <ul id="append-symbols-options" class="password-options-list">
+            <li>
+              <input type="checkbox" id="append-symbols-to-passwords">
+              <label
+                for="append-symbols-to-passwords"
+                id="append-symbols-to-passwords-label"
+                title="Append symbols to passwords"
+              >Append <input type="number" id="append-symbols-to-passwords-quantity" class="quantity-input" value="1" min="1" required> symbol(s) to passwords</label>
+            </li>
+            <li>
+              <input type="checkbox" id="append-symbols-to-each-word">
+              <label
+                for="append-symbols-to-each-word"
+                id="append-symbols-to-each-word-label"
+                title="Append symbols to each word in passwords"
+              >Append <input type="number" id="append-symbols-to-each-word-quantity" class="quantity-input" value="1" min="1" required> symbol(s) to each word</label>
+            </li>
+            <li>
+              <input type="checkbox" id="append-x-symbols-to-y-words">
+              <label
+                for="append-x-symbols-to-y-words"
+                id="append-x-symbols-to-y-words-label"
+                title="Append X symbols to Y randomly chosen words"
+              >Append <input type="number" id="append-x-symbols-to-y-words-symbol-quantity" class="quantity-input" value="1" min="1" required> symbol(s) to <input type="number" id="append-x-symbols-to-y-words-word-quantity" class="quantity-input" value="1" min="1" required> word(s)</label>
+            </li>
+          </ul>
+          
+          <ul id="obfuscate-password-options" class="password-options-list">
+            <li>
+              <input type="checkbox" id="leetify-passwords">
+              <label
+                for="leetify-passwords"
+                id="leetify-passwords-label"
+                title="Substitute X letters in Y randomly chosen words with similar numbers/symbols"
+              >Leetify up to <input type="number" id="leetify-passwords-letter-quantity" class="quantity-input" value="1" min="1" required> letter(s) in <input type="number" id="leetify-passwords-word-quantity" class="quantity-input" value="1" min="1" required> word(s)</label>
+            </li>
+          </ul>
+          
+          <ul id="misc-options" class="password-options-list">
+            <li>
+              <input type="checkbox" id="use-custom-separator">
+              <label
+                for="use-custom-separator"
+                id="use-custom-separator-label"
+                title="Use custom separator (overrides casing separator)"
+              >Use custom separator: </label>
+              <input type="text" id="custom-separator-input">
+            </li>
+            <li>
+              <input type="checkbox" id="filter-separator" checked>
+              <label
+                for="filter-separator"
+                id="filter-separator-label"
+                title="Filter separator from randomly generated values"
+              >Filter separator</label>
+            </li>
+          </ul>
+          
+          <ul id="exclusions-options" class="password-options-list">
+            <li>
+              <label
+                for="excluded-words-input"
+                id="excluded-words-label"
+                title="Comma delimited list of excluded words"
+              >Excluded words:</label>
+              <input type="text" id="excluded-words-input">
+            </li>
+            <li>
+              <label
+                for="excluded-characters-input"
+                id="excluded-characters-label"
+                title="List of excluded characters (empty string (&quot;&quot;) delimited)"
+              >Excluded characters:</label>
+              <input type="text" id="excluded-characters-input">
+            </li>
+          </ul>
+        </details> <!-- advanced-options-details -->
+      </fieldset> <!-- options-fieldset -->
+      
+      <button
+        id="generate-button"
+        title="Generate password(s)"
+        disabled
+      >Generate</button>
+    </form>
+    
+    <pre id="output-pre"></pre>
+    
+    <div id="output-buttons-div">
+      <div id="output-buttons-left">
+        <button
+          id="copy-button"
+          title="Copy password(s) to clipboard"
+        >Copy</button>
+        
+        <button
+          id="clear-button"
+          title="Clear password(s)"
+        >Clear</button>
+      </div>
+      
+      <div id="output-buttons-right">
+        <button
+          id="about-button"
+          title="About Random Word Password Generator"
+        >About</button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="status-div">
+    <pre id="status-message"></pre>
+  </div>
+  
+  <!-- About Modal -->
+  <div id="about-modal" class="modal">
+    
+    <!-- Modal content -->
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <span id="close-about" class="close">&times;</span>
+        
+        <h2>About</h2>
+      </div>
+      
+      <div class="modal-body">
+        <p>
+          Random Word Password Generator
+        </p>
+        
+        <p>
+          A utility for generating mnemonic random word passwords
+        </p>
+        
+        <p>
+          Generate random word passwords comprising a user-defined variable number of random common easy to remember English words programmatically chosen via crypto.getRandomValues(). Options to set number of words per password, total number of passwords to generate, casing, and word banks allow further customization. Passwords are generated 100% client-side. <a href="https://xkcd.com/936/#comic" target="_blank">Obligatory xkcd</a>
+        </p>
+        
+        <p>
+          By Nicholas D. Horne
+        </p>
+        
+        <p>
+          GNU AGPLv3 licensed source code available at <a href="https://github.com/ndhorne/random-word-password-generator-js" target="_blank">https://github.com/ndhorne/random-word-password-generator-js</a>
+        </p>
+      </div> <!-- .modal-body -->
+      
+      <div class="modal-footer"></div>
+      
+    </div> <!-- .modal-content -->
+    
+  </div> <!-- #about-modal -->
+  
+  <script src="index.js"></script>
+</body>
+</html>

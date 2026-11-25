@@ -1,0 +1,20 @@
+@media (max-width:402px) {
+  #numeric-arguments-list label {
+    width: 230px;
+  }
+}
+
+@media (max-width: 401px) {
+  .password-options-list {
+    font-size: 12px;
+  }
+  #exclusions-options label {
+    width: 114px;
+  }
+}
+
+@media (max-width: 364px) {
+  .password-options-list {
+    font-size: 10px;
+  }
+}
